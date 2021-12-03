@@ -48,7 +48,7 @@ public class LoanController {
         if (loanApplicationDTO.getPayments()<=0){
             return new ResponseEntity<>("The number of payments must be more than 0", HttpStatus.FORBIDDEN);
         }
-        if (loanRepository.getById(loanApplicationDTO.getId()) ==null) {
+        if (loanRepository.getById(loanApplicationDTO.getId())==null) {
             return new ResponseEntity<>("Invalid loan ID", HttpStatus.FORBIDDEN);
         }
         if (loanApplicationDTO.getAmount()>loanRepository.getById(loanApplicationDTO.getId()).getMaxAmount()){
