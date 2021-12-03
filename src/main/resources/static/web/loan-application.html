@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css%22%3E">-->
+</head>
+
+<body class="d-flex flex-column">
+<div id="app" class="container-fluid">
+    <header class=" bg-gradient text-white row col-12">
+        <div class="col-8 col-md-4 offset-1 offset-md-0  d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bank2" viewBox="0 0 16 16">
+                <path d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z"/>
+            </svg>
+            <p class="m-0 fs-5 col-7 col-md-8">MindHub Brothers</p>
+        </div>
+        <h1 class="text-center d-none d-md-block col-md-6 ">Loan application</h1>
+
+        <button class="btn btn-dark d-md-none toggl col-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMarket" aria-controls="offcanvasMarket" aria-expanded="false" aria-label="Toggle navigation">
+            <i class='bx bxs-chevrons-right'></i>
+        </button>
+        <div class="canvas offcanvas offcanvas-start" id="offcanvasMarket" data-bs-scroll="true"
+             aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h4>Mind Hub Brothers Bank &copy; </h4>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body row">
+                <div class="sidebar d-flex flex-column justify-content-between">
+                    <ul class="nav_list">
+                        <li>
+                            <a href="http://localhost:8080/web/accounts.html">
+                                <i class='bx bxs-user-account' ></i>
+                                <span class="links_name">My Accounts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8080/web/transfers.html">
+                                <i class='bx bx-money'></i>
+                                <span class="links_name">Transfers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8080/web/cards.html">
+                                <i class='bx bxs-credit-card' ></i>
+                                <span class="links_name">Cards</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class='bx bx-cog' ></i>
+                                <span class="links_name">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="profile_content">
+                        <div class="profile">
+                            <div class="profile_details">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
+                                    <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                                    <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>
+                                <div class="name">{{client.lastName}}, {{client.firstName}}</div>
+                            </div>
+                            <i class='bx bx-log-out' type="button" id="log_out" @click="logOut" ></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="row">
+        <div class="largo col-3 canvas d-none d-md-block">
+            <div class="sidebar d-flex flex-column justify-content-between">
+                <ul class="nav_list">
+                    <li>
+                        <a href="http://localhost:8080/web/accounts.html">
+                            <i class='bx bxs-user-account' ></i>
+                            <span class="links_name">My Accounts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:8080/web/transfers.html">
+                            <i class='bx bx-money'></i>
+                            <span class="links_name">Transfers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:8080/web/cards.html">
+                            <i class='bx bxs-credit-card' ></i>
+                            <span class="links_name">Cards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class='bx bx-cog' ></i>
+                            <span class="links_name">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="profile_content">
+                    <div class="profile">
+                        <div class="profile_details">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
+                                <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                                <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg>
+                            <div class="name">{{client.lastName}}, {{client.firstName}}</div>
+                        </div>
+                        <i class='bx bx-log-out' id="log_out" @click.prevent="logOut"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8 largo_body ">
+            <form>
+                <fieldset class="fieldset1 offset-1 mt-5">
+                    <legend class="legend1 text-center">New Loan</legend>
+                    <div class="d-flex flex-column">
+
+                        <label for="type">Select a Loan:</label>
+                        <select id="type" v-model="loanType" @click.prevent="chargePayOption()" required>
+                            <option disabled selected>Loan</option>
+                            <option v-for="loan in loans">{{loan.name}}</option>
+                        </select>
+
+                        <label for="color">Choose a payment option:</label>
+                        <select id="color" v-model="selectedPayment" required>
+                            <option v-for="payment in paymentOptions" @click.prevent="totalPayment2()">{{payment}}</option>
+                        </select>
+
+                        <div class="d-flex justify-content-between">
+                        <label for="loanAmount">Amount:</label>
+                            <p v-if="selectedLoan.length>0" class="m-0">max:{{selectedLoan[0].maxAmount}}</p>
+                        </div>
+                        <input v-model="loanAmount" type="number" min="1000" id="loanAmount" @input="totalPayment()" required>
+                        <div v-if="loanAmount==0">Select a number bigger than 0.</div>
+
+                        <label for="destiny">Choose Destiny Account:</label>
+                        <select id="destiny" v-model="destinyAccount" required>
+                            <option v-for="account in accounts">{{account.number}}</option>
+                        </select>
+
+                        <div v-if="selectedPayment>1">
+                        <p>By clicking Apply you accept our terms and conditions.</p>
+                        <p>You will return the amount of the loan plus %20, for the selected option in will be ${{total}} in {{selectedPayment}} fees of {{partialPay}}</p>
+                        </div>
+                            <button type="button" class="btn btn-success" @click.prevent="loanApply()">Apply</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./data/loan-application.js"></script>
+
+</body>
+
+</html>

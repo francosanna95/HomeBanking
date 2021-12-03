@@ -1,0 +1,21 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+.image{
+ background-image: url(../assets/R.jpg);
+height: 90vh;
+}
+.form{
+background-color:#11101d;
+ background-image: linear-gradient(to bottom, #11101d,#11101d,#292929,#4e4e4e, #777);
+height: 90vh;}
+header{
+    background-color: #11101d;
+    min-height:10vh;
+   /* min-width:100vw;*/
+}
+.canvas {
+    background-color: #11101d;
+}

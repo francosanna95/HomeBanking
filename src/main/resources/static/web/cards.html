@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cards</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body class="d-flex flex-column">
+<div id="app" class="container-fluid">
+    <header class=" bg-gradient text-white row col-12">
+        <div class="col-8 col-md-4 offset-1 offset-md-0  d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bank2" viewBox="0 0 16 16">
+                <path d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z"/>
+            </svg>
+            <p class="m-0  fs-5 col-7 col-md-8">MindHub Brothers</p>
+        </div>
+        <h1 class="text-center d-none d-md-block col-md-6 ">Your Cards</h1>
+
+        <button class="btn btn-dark d-md-none toggl col-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMarket" aria-controls="offcanvasMarket" aria-expanded="false" aria-label="Toggle navigation">
+            <i class='bx bxs-chevrons-right'></i>
+        </button>
+        <div class="canvas offcanvas offcanvas-start" id="offcanvasMarket" data-bs-scroll="true"
+             aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h4>Mind Hub Brothers Bank &copy; </h4>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body row">
+                <div class="sidebar d-flex flex-column justify-content-between">
+                    <ul class="nav_list">
+                        <li>
+                            <a href="http://localhost:8080/web/accounts.html">
+                                <i class='bx bxs-user-account' ></i>
+                                <span class="links_name">My Accounts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8080/web/transfers.html">
+                                <i class='bx bx-money'></i>
+                                <span class="links_name">Transfers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8080/web/cards.html">
+                                <i class='bx bxs-credit-card' ></i>
+                                <span class="links_name">Cards</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class='bx bx-cog' ></i>
+                                <span class="links_name">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="profile_content">
+                        <div class="profile">
+                            <div class="profile_details">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
+                                    <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                                    <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>
+                                <div class="name">{{client.lastName}}, {{client.firstName}}</div>
+                            </div>
+                            <i class='bx bx-log-out' id="log_out" @click.prevent="logOut"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="row">
+        <div class="largo col-3 canvas d-none d-md-block">
+            <div class="sidebar d-flex flex-column justify-content-between">
+                <ul class="nav_list">
+                    <li>
+                        <a href="http://localhost:8080/web/accounts.html">
+                            <i class='bx bxs-user-account' ></i>
+                            <span class="links_name">My Accounts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:8080/web/transfers.html">
+                            <i class='bx bx-money'></i>
+                            <span class="links_name">Transfers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:8080/web/cards.html">
+                            <i class='bx bxs-credit-card' ></i>
+                            <span class="links_name">Cards</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class='bx bx-cog' ></i>
+                            <span class="links_name">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="profile_content">
+                    <div class="profile">
+                        <div class="profile_details">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
+                                <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                                <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg>
+                            <div class="name">{{client.lastName}}, {{client.firstName}}</div>
+                        </div>
+                        <i class='bx bx-log-out' id="log_out" @click.prevent="logOut"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-12 col-md-4 offset-1 largo_body ">
+                <h2 class="text-center pt-2">Associated Debit Cards</h2>
+                <div v-if="debitCards.length>=1" class="m-0 col-12">
+                    <div v-for="card in debitCards" class="d-flex flex-row justify-content-center">
+                       <div v-show="card.id==selectedCardDebit" class="card">
+                           <!--     <div class="d-flex row justify-content-center"> -->
+                                   <div class="card m-0" :class="card.expired">
+                                       <div  :class='card.color' class="card__front">
+                                           <div class="d-flex justify-content-between">
+                                               <i class='bx bxl-visa card-img h1'></i>
+                                               <p class="h4">Mh.B.</p>
+                                           </div>
+                                           <p v-if="card.expired=='yes'" class="text-center bg-danger text-white position-fixed">Expired</p>
+                                           <p class="card_numer"> {{formatCardNumber(card.number)}}</p>
+                                           <div class="card__space-75">
+                                               <span class="card__label">Card holder</span>
+                                               <p class="card__info">{{card.cardHolder}}</p>
+                                           </div>
+                                           <div class="card__space-25">
+                                               <span class="card__label">Expires</span>
+                                               <p class="card__info">{{card.thruDate}}</p>
+                                           </div>
+                                       </div>
+                                       <div :class='card.color'  class="card__back">
+                                           <div class="card__black-line"></div>
+                                           <div class="card__back-content">
+                                               <div class="card__secret">
+                                                   <p class="card__secret--last">{{card.cvv}}</p>
+                                               </div>
+                                               <div class="d-flex justify-content-between pt-5">
+                                                   <i class='bx bxs-bank h2' ></i>
+                                                   <button type="button" class="btn" @click.prevent="deleteCard(card.id)">Delete</button>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="d-flex justify-content-center">
+                               </div>
+                           </div>
+                       </div>
+                       <div v-else class="text-center"><p>No Debit cards founded</p></div>
+                           <form class="d-flex justify-content-center">
+                               <div v-for="debitCard in debitCards" class="form-check">
+                                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="selectedCardDebit" :value="debitCard.id">
+                               </div>
+                           </form>
+
+                       <h2 class="text-center">Associated Credit Cards</h2>
+                       <div v-if="creditCards.length>=1">
+                           <div v-for="card in creditCards" class="d-flex row justify-content-center">
+                               <div class="d-flex row justify-content-center">
+                                   <div class="card m-0" :class="card.expired">
+                                       <div  :class='card.color' class="card__front">
+                                           <div class="d-flex justify-content-between">
+                                               <i class='bx bxl-visa card-img h1'></i>
+                                               <p class="h4">Mh.B.</p>
+                                           </div>
+                                           <p v-if="card.expired=='yes'" class="text-center bg-danger text-white position-fixed">Expired</p>
+                                           <p class="card_numer"> {{formatCardNumber(card.number)}}</p>
+                                           <div class="card__space-75">
+                                               <span class="card__label">Card holder</span>
+                                               <p class="card__info">{{card.cardHolder}}</p>
+                                           </div>
+                                           <div class="card__space-25">
+                                               <span class="card__label">Expires</span>
+                                               <p class="card__info">{{card.thruDate}}</p>
+                                           </div>
+                                       </div>
+                                       <div :class='card.color'  class="card__back">
+                                           <div class="card__black-line"></div>
+                                           <div class="card__back-content">
+                                               <div class="card__secret">
+                                                   <p class="card__secret--last">{{card.cvv}}</p>
+                                               </div>
+                                               <div class="d-flex justify-content-between pt-5">
+                                                   <i class='bx bxs-bank h2' ></i>
+                                                   <button type="button" class="btn" @click.prevent="deleteCard(card.id)">Delete</button>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div v-else class="text-center"><p>No Credit Cards founded</p> </div>
+                           <form class="d-flex justify-content-center">
+                               <div v-for="creditCard in creditCards" class="form-check">
+                                   <input class="form-check-input" type="radio" name="flexRadioDefault" v-model="selectedCardCredit" :value="creditCard.id">
+                               </div>
+                           </form>
+
+                       <button v-if="creditCards.length !=3 || debitCards.length !=3" type="button" class="btn btn-primary" @click="goToCreate()">Create</button>
+                   </div>
+        <div class="col-3 d-none d-md-flex pt-5">
+            <img src="./assets/preapruvedLonas.jpg" class="cardImg" width="430" height="500">
+        </div>
+           </section>
+       </div>
+
+
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+               integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+               crossorigin="anonymous"></script>
+
+       <script src="https://unpkg.com/vue@next"></script>
+       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+       <script src="./data/cards.js"></script>
+
+       </body>
+       </html>
